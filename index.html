@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Valentine</title>
+
 <style>
   html, body {
     margin: 0;
@@ -21,11 +22,11 @@
     text-align: center;
     width: 90%;
     max-width: 450px;
+    position: relative;
   }
 
   img.main-img {
     width: 100%;
-    height: auto;
     max-height: 60vh;
     object-fit: contain;
     margin-bottom: 20px;
@@ -42,6 +43,7 @@
     gap: 16px;
     justify-content: center;
     flex-wrap: wrap;
+    position: relative;
   }
 
   button {
@@ -51,8 +53,12 @@
     border: 1px solid #000000;
     background-color: #ffffff;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, left 0.3s ease, top 0.3s ease;
     min-width: 80px;
+  }
+
+  #noBtn {
+    position: relative;
   }
 
   img.fireworks {
@@ -60,19 +66,9 @@
     max-width: 300px;
     margin-top: 20px;
   }
-
-  @media (max-width: 400px) {
-    h1 {
-      font-size: 1.5rem;
-    }
-
-    button {
-      padding: 8px 18px;
-      font-size: 0.9rem;
-    }
-  }
 </style>
 </head>
+
 <body>
 
 <div class="container" id="content">
@@ -80,7 +76,8 @@
        src="https://i.pinimg.com/474x/08/e6/eb/08e6eb18bfd16b7b3f5df008d8b53a8c.jpg"
        alt="Cat offering rose">
 
-  <h1>Will you be my Valentine?</h1>
+  <h1>Will you be my Valentine, babi?</h1>
+
   <div class="buttons">
     <button id="yesBtn">Yes</button>
     <button id="noBtn">No</button>
@@ -88,30 +85,29 @@
 </div>
 
 <script>
-  const yesBtn = document.getElementById('yesBtn');
-  const noBtn = document.getElementById('noBtn');
-  const content = document.getElementById('content');
+  const yesBtn = document.getElementById("yesBtn");
+  const noBtn = document.getElementById("noBtn");
+  const content = document.getElementById("content");
 
-  let yesScale = 1;
-  const maxScale = 2.2;
-  const growthStep = 0.15;
-
-  function growYes() {
-    if (yesScale < maxScale) {
-      yesScale = Math.min(yesScale + growthStep, maxScale);
-      yesBtn.style.transform = `scale(${yesScale})`;
-    }
+  // Make NO button run away
+  function moveNoButton() {
+    const x = Math.random() * 120 - 60;
+    const y = Math.random() * 120 - 60;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
   }
 
-  noBtn.addEventListener('mouseover', growYes);
-  noBtn.addEventListener('touchstart', growYes);
-  noBtn.addEventListener('click', growYes);
+  noBtn.addEventListener("mouseover", moveNoButton);
+  noBtn.addEventListener("touchstart", moveNoButton);
+  noBtn.addEventListener("click", moveNoButton);
 
-  // Show fireworks + Yay message when Yes is clicked
-  yesBtn.addEventListener('click', () => {
+  // YES button success screen
+  yesBtn.addEventListener("click", () => {
     content.innerHTML = `
       <h1>Yay! 💖</h1>
-      <img class="fireworks" src="https://media.giphy.com/media/26tOZ42Mg6pbTUPHW/giphy.gif" alt="Fireworks">
+      <p style="font-size: 1.2rem; margin-top: 8px;">I love you</p>
+      <img class="fireworks"
+        src="https://media.giphy.com/media/26tOZ42Mg6pbTUPHW/giphy.gif"
+        alt="Fireworks">
     `;
   });
 </script>
