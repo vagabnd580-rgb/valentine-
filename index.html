@@ -29,6 +29,7 @@
     max-height: 60vh;
     object-fit: contain;
     margin-bottom: 20px;
+    border-radius: 12px; /* subtle rounding for style */
   }
 
   h1 {
@@ -50,12 +51,8 @@
     border: 1px solid #000000;
     background-color: #ffffff;
     cursor: pointer;
-    transition: transform 0.2s ease;
+    transition: transform 0.3s ease; /* smooth growth */
     min-width: 80px;
-  }
-
-  button:hover {
-    transform: scale(1.05);
   }
 
   img.fireworks {
@@ -64,7 +61,6 @@
     margin-top: 20px;
   }
 
-  /* Mobile adjustments */
   @media (max-width: 400px) {
     h1 {
       font-size: 1.5rem;
@@ -80,9 +76,9 @@
 <body>
 
 <div class="container" id="content">
-  <!-- Cat GIF as the main image -->
+  <!-- New cat image -->
   <img class="main-img"
-       src="https://tenor.com/tRplmFvwRlS.gif"
+       src="https://i.pinimg.com/474x/08/e6/eb/08e6eb18bfd16b7b3f5df008d8b53a8c.jpg"
        alt="Cat offering rose">
 
   <h1>Will you be my Valentine?</h1>
@@ -99,14 +95,20 @@
 
   let yesScale = 1;
   const maxScale = 2.2;
+  const growthStep = 0.15;
 
-  // Grow Yes button when hovering No
-  noBtn.addEventListener('mouseover', () => {
+  // Function to gradually grow Yes button smoothly
+  function growYes() {
     if (yesScale < maxScale) {
-      yesScale += 0.15;
+      yesScale = Math.min(yesScale + growthStep, maxScale);
       yesBtn.style.transform = `scale(${yesScale})`;
     }
-  });
+  }
+
+  // Grow Yes button on hover (desktop) or touch/click (mobile)
+  noBtn.addEventListener('mouseover', growYes);
+  noBtn.addEventListener('touchstart', growYes);
+  noBtn.addEventListener('click', growYes);
 
   // Show fireworks GIF when Yes is clicked
   yesBtn.addEventListener('click', () => {
