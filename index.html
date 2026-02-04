@@ -29,7 +29,7 @@
     max-height: 60vh;
     object-fit: contain;
     margin-bottom: 20px;
-    border-radius: 12px; /* subtle rounding for style */
+    border-radius: 12px;
   }
 
   h1 {
@@ -51,7 +51,7 @@
     border: 1px solid #000000;
     background-color: #ffffff;
     cursor: pointer;
-    transition: transform 0.3s ease; /* smooth growth */
+    transition: transform 0.3s ease;
     min-width: 80px;
   }
 
@@ -76,7 +76,6 @@
 <body>
 
 <div class="container" id="content">
-  <!-- New cat image -->
   <img class="main-img"
        src="https://i.pinimg.com/474x/08/e6/eb/08e6eb18bfd16b7b3f5df008d8b53a8c.jpg"
        alt="Cat offering rose">
@@ -97,7 +96,6 @@
   const maxScale = 2.2;
   const growthStep = 0.15;
 
-  // Function to gradually grow Yes button smoothly
   function growYes() {
     if (yesScale < maxScale) {
       yesScale = Math.min(yesScale + growthStep, maxScale);
@@ -105,14 +103,16 @@
     }
   }
 
-  // Grow Yes button on hover (desktop) or touch/click (mobile)
   noBtn.addEventListener('mouseover', growYes);
   noBtn.addEventListener('touchstart', growYes);
   noBtn.addEventListener('click', growYes);
 
-  // Show fireworks GIF when Yes is clicked
+  // Show fireworks + Yay message when Yes is clicked
   yesBtn.addEventListener('click', () => {
-    content.innerHTML = '<img class="fireworks" src="https://media.giphy.com/media/26tOZ42Mg6pbTUPHW/giphy.gif" alt="Fireworks">';
+    content.innerHTML = `
+      <h1>Yay! 💖</h1>
+      <img class="fireworks" src="https://media.giphy.com/media/26tOZ42Mg6pbTUPHW/giphy.gif" alt="Fireworks">
+    `;
   });
 </script>
 
