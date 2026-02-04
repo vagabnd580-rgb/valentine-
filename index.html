@@ -53,7 +53,7 @@
     border: 1px solid #000000;
     background-color: #ffffff;
     cursor: pointer;
-    transition: transform 0.3s ease, left 0.3s ease, top 0.3s ease;
+    transition: transform 0.3s ease;
     min-width: 80px;
   }
 
@@ -61,10 +61,9 @@
     position: relative;
   }
 
-  img.fireworks {
-    width: 80%;
-    max-width: 300px;
-    margin-top: 20px;
+  img.celebrate {
+    width: 160px;
+    margin-top: 16px;
   }
 </style>
 </head>
@@ -89,7 +88,6 @@
   const noBtn = document.getElementById("noBtn");
   const content = document.getElementById("content");
 
-  // Make NO button run away
   function moveNoButton() {
     const x = Math.random() * 120 - 60;
     const y = Math.random() * 120 - 60;
@@ -100,13 +98,12 @@
   noBtn.addEventListener("touchstart", moveNoButton);
   noBtn.addEventListener("click", moveNoButton);
 
-  // YES button success screen
   yesBtn.addEventListener("click", () => {
     content.innerHTML = `
-      <h1>Yay! I love you! 💖</h1>
-      <img class="fireworks"
-        src="https://media.giphy.com/media/26tOZ42Mg6pbTUPHW/giphy.gif"
-        alt="Fireworks">
+      <h1>Yay! 💖 I love you</h1>
+      <img class="celebrate"
+        src="https://media.tenor.com/gP0009R3r7UAAAAi/peach-goma-peach-and-goma.gif"
+        alt="Peach and Goma">
     `;
   });
 </script>
